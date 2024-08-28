@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@CrossOrigin("*")
 public class URLShortenerController {
 
     private final URLShortenerService urlShortenerService;
@@ -21,5 +22,10 @@ public class URLShortenerController {
     @GetMapping("/{shotURL}")
     public ResponseEntity<Object> getOriginalUrl(@PathVariable("shotURL") String shortURL){
         return urlShortenerService.getOriginalUrl(shortURL);
+    }
+
+    @GetMapping
+    public ResponseEntity<Object> getAllURLDetails(){
+        return urlShortenerService.getAllURLDetails();
     }
 }
